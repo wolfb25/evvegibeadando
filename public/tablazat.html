@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="hu">
+	<head>
+		<title>Új rekord</title>
+		<meta   charset="utf-8">
+		<meta   name="viewport" content="width=device-width, initial-scale=1">
+		<link   href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link   rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.datatables.net/2.0.3/css/dataTables.dataTables.css" />
+		<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script> 
+		<link   href="style.css" rel="stylesheet">
+		<script src="common_studio13.js"></script>
+
+		<script type="text/javascript">
+
+			$(document).ready(function() {
+				
+				$("#tablazat").empty();
+				var elemek = "<thead><tr><th>ID</th><th>Név</th><th>Fehérje</th><th>Zsír</th><th>Szénhidrát</th><th>Energia</th><th>Mé.egy.</th></tr></thead><tbody>";
+				var k_json = ajax_post("alapanyagok", 1 );
+				for (var i = 0; i < k_json.rows.length; ++i) {
+					elemek  += `<tr><th>${k_json.rows[i].ID_AA}</th><th>${k_json.rows[i].NEV}</th><th>${k_json.rows[i].FEHERJE}</th><th>${k_json.rows[i].ZSIR}</th><th>${k_json.rows[i].CH}</th><th>Energia</th><th>${k_json.rows[i].MEEGYS}</th></tr>`;
+				}
+				elemek += "</tbody>"
+				$("#tablazat").html(listItems);
+			
+			});
+			  
+			</script>
+
+	  </head>
+	  
+<body>	
+	<table id="tablazat" class="table table-striped" style="width:80%">
+		<!-- content goes here -->
+	</table>
+</body>
+</html>
+
+
+	
