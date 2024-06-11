@@ -10,10 +10,10 @@ var mysql = require("mysql");
 
 var pool = mysql.createPool({
     connectionLimit : 10,
-    host    : 'localhost',
-    user    : 'root',
+    host    : '195.199.230.210',
+    user    : 'user',
     port    : "3306",
-    password: '123456',     /*  !!! node.js leáll a connection hibákra !!! (Query hibára ok.)  */ 
+    password: 'Pite137',     /*  !!! node.js leáll a connection hibákra !!! (Query hibára ok.)  */ 
     database: 'test'
 });
 

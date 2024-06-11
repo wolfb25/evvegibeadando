@@ -16,24 +16,22 @@
 		<script type="text/javascript">
 
 			$(document).ready(function() {
-				
 				$("#tablazat").empty();
 				var elemek = "<thead><tr><th>ID</th><th>Név</th><th>Fehérje</th><th>Zsír</th><th>Szénhidrát</th><th>Energia</th><th>Mé.egy.</th></tr></thead><tbody>";
 				var k_json = ajax_post("alapanyagok", 1 );
 				for (var i = 0; i < k_json.rows.length; ++i) {
-					elemek  += `<tr><th>${k_json.rows[i].ID_AA}</th><th>${k_json.rows[i].NEV}</th><th>${k_json.rows[i].FEHERJE}</th><th>${k_json.rows[i].ZSIR}</th><th>${k_json.rows[i].CH}</th><th>Energia</th><th>${k_json.rows[i].MEEGYS}</th></tr>`;
+					elemek  += `<tr><th>${k_json.rows[i].ID_AA}</th><th>${k_json.rows[i].NEV}</th><th>${k_json.rows[i].FEHERJE}</th><th>${k_json.rows[i].ZSIR}</th><th>${k_json.rows[i].CH}</th><th>${k_json.rows[i].ENERGIA}</th><th>${k_json.rows[i].MEEGYS}</th></tr>`;
 				}
 				elemek += "</tbody>"
-				$("#tablazat").html(listItems);
-			
+				$("#tablazat").html(elemek);
 			});
 			  
-			</script>
+		</script>
 
 	  </head>
 	  
 <body>	
-	<table id="tablazat" class="table table-striped" style="width:80%">
+	<table id="tablazat" class="table table-striped m-auto" style="width:80%">
 		<!-- content goes here -->
 	</table>
 </body>
