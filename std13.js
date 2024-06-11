@@ -15,8 +15,29 @@ var DB  = require('./datamodule_mysql.js');
 app.use(express.static('public'));    // frontend root mappa (index.html)
 
 app.post('/alapanyagok', (req, res) => {
-	var sql = "SELECT ID_AA, NEV, FEHERJE, ZSIR, CH, ENERGIA, MEEGYS FROM alapanyag;";
+	var sql = `
+		SELECT ID_AA, NEV, FEHERJE, ZSIR, CH, ENERGIA, MEEGYS
+		FROM alapanyag
+		ORDER BY ID_AA DESC
+		LIMIT 100;
+	`;
 	Send_to_JSON(req, res, sql);	
+});
+
+app.post('/mentes', (req, res) => {
+	console.log(req.query);
+
+	var nev = req.query.nev;
+	var feherje = parseFloat(req.query.feherje);
+	var zsir = parseFloat(req.query.zsir);
+	var ch = parseFloat(req.query.ch);
+	var energia = parseFloat(req.query.energia);
+	var meegys = req.query.meegys;
+	var sql = `
+		INSERT INTO alapanyag (NEV, FEHERJE, ZSIR, CH, ENERGIA, MEEGYS)
+		VALUES ("${nev}", ${feherje}, ${zsir}, ${ch}, ${energia}, "${meegys}");
+	`;
+	Send_to_JSON(req, res, sql);
 });
 
 function Send_to_JSON (req, res, sql) {

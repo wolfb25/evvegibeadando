@@ -14,9 +14,39 @@
 		<script src="common_studio13.js"></script>
 
 		<script type="text/javascript">
+			function mySend( ops ) {
+				var defOps = {text:"", tip:"success", mp:5 };   // tip: info, success, danger, warning; mp: 5 másodperc (0:off) 
+				ops = $.extend( {}, defOps, ops );              // tömb összefésülése  
+				var id = "toast1";
+				var idx = "#"+id;                               // jquery
+				var s =`<div id="${id}" class="toast bg-${ops.tip} text-black hide" style="position:fixed; right:10px; bottom:10px; z-index:99999">
+							<div class="toast-header">
+							<h3 class="me-auto"><i class="bi bi-chat-square-text"></i> ${ops.tip} ...</h3>
+							<button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+						</div>
+							<div class="toast-body" style="font-size: 12pt; font-weight:bold;">${ops.text}</div>
+						</div>`;
+
+				$(idx).remove();       
+				$("body").append(s); 
+
+				if (ops.mp == 0) { $(idx).toast({ autohide: false }); } 
+				$(idx).show();
+			};
+
 			$(document).ready(function() {
 				$("#save_button").click(function() {
-					ajax_post("mentes/" + "", 1); // változók betáplálása
+					var nev = $("#nev").val();
+					var feherje = $("#feherje").val();
+					var zsir = $("#zsir").val();
+					var ch = $("#ch").val();
+					var energia = $("#energia").val();
+					var meegys = $("#meegys").val();
+					var url = "mentes?" + $("#inputform").serialize();
+					console.log(url);
+					var json = ajax_post(url, 1);
+					console.log(json);
+					mySend({text: json.text, tip: json.tip, mp:5 })
 				});
 			});
 		</script>
@@ -25,7 +55,7 @@
 	  
 <body>
 	<div class="bg-dark p-5">
-		<form id="mod1" class="row"> 
+		<form id="inputform" class="row"> 
 	
 			<div class="form-floating my-1 mr-1 col">
 				<input type="text" class="form-control" id="nev" name="nev">
@@ -59,7 +89,7 @@
 	
 		</form>
 	
-		<button id="save_button" type="button" class="btn btn-success" data-bs-dismiss="modal"> <i class="bi bi-save2"></i> Ment</button>
+		<button id="save_button" type="button" class="btn btn-success"> <i class="bi bi-save2"></i> Ment</button>
 	</div>
 	
 </body>

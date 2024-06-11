@@ -86,7 +86,7 @@ function ajax_get( urlsor, hova, tipus, aszinkron ) {
     $.ajax({url: urlsor, type:"get", async:aszinkron, cache:false, dataType:tipus===0?'html':'json',
         beforeSend:function(xhr)   { $('#loader1').css("display","block");  }, 
         success:   function(data)  { $(hova).html(data); },
-        error:     function(jqXHR, textStatus, errorThrown) {mySend({text:jqXHR.responseText, tip:"danger", mp:5});},
+        error:     function(jqXHR, textStatus, errorThrown) {/*mySend({text:jqXHR.responseText, tip:"danger", mp:5});*/},
         complete:  function()      { $('#loader1').css("display","none"); }   
     });
 return true;
@@ -99,7 +99,7 @@ function ajax_post( urlsor, tipus ) {
     $.ajax({url: urlsor, type:"post", async:false, cache:false, dataType:tipus===0?'html':'json',
         beforeSend:function(xhr)   { $('#loader1').css("display","block");  }, 
         success:   function(data)  { s = data; },
-        error:     function(jqXHR, textStatus, errorThrown) {mySend({text:jqXHR.responseText, tip:"danger", mp:5});},
+        error:     function(jqXHR, textStatus, errorThrown) {/*mySend({text:jqXHR.responseText, tip:"danger", mp:5});*/},
         complete:  function()      { $('#loader1').css("display","none"); } 
     });
     return s;
@@ -108,8 +108,9 @@ function ajax_post( urlsor, tipus ) {
 /* üzenet ablakot generál, s jelenít meg. alkalmazása: 
    mySend( {text: "Pite!",  tip: Bootstap --> "info" "success", "warning", "error"} );   
 -------------------------------------------------------------------------------------*/
+
 function mySend( ops ) {
-    var defOps = {text:"", tip:"success", mp:5 };   /* tip: info, success, danger, warning; mp: 5 másodperc (0:off) */
+    var defOps = {text:"", tip:"success", mp:5 };   // tip: info, success, danger, warning; mp: 5 másodperc (0:off) 
     ops = $.extend( {}, defOps, ops );              // tömb összefésülése  
     var id = "toast1";
     var idx = "#"+id;                               // jquery
