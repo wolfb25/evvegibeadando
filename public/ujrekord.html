@@ -12,68 +12,55 @@
 		<script src="https://cdn.datatables.net/2.0.3/js/dataTables.js"></script> 
 		<link   href="style.css" rel="stylesheet">
 		<script src="common_studio13.js"></script>
+
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#save_button").click(function() {
+					ajax_post("mentes/" + "", 1); // változók betáplálása
+				});
+			});
+		</script>
+
 	  </head>
 	  
 <body>
+	<div class="bg-dark p-5">
+		<form id="mod1" class="row"> 
+	
+			<div class="form-floating my-1 mr-1 col">
+				<input type="text" class="form-control" id="nev" name="nev">
+				<label for="nev">Termék neve</label>
+			</div>
+	
+			<div class="form-floating my-1 mr-1 col">
+				<input type="number" class="form-control" id="feherje" name="feherje">
+				<label for="feherje">Fehérje</label>
+			</div>
 
-	<!--nem modalnak kell lennie-->
-	<div class="modal" id="myModal0">
-		<div class="modal-dialog modal-lg">
-		  <div class="modal-content">
-			<div class="modal-header bg-secondary text-white">
-			  <h4 id="idx1" class="modal-title">Modal Heading</h4>
-			  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+			<div class="form-floating my-1 mr-1 col">
+				<input type="number" class="form-control" id="zsir" name="zsir">
+				<label for="zsir">Zsír</label>
 			</div>
-	  
-			<div id="idx0" class="modal-body bg-light">     
-			  <form id="mod1" class="row"> 
-				<div class="form-floating my-1">
-				  <select class="form-select" id="mod_kat" name="mod_kat"></select>     
-				  <label for="mod_kat">Kategória</label>
-				</div>
-	  
-				<div class="form-floating my-1">
-				  <input type="text" class="form-control" id="mod_nev" name="mod_nev">
-				  <label for="mod_nev">Termék neve</label>
-				</div>
-	  
-				<div class="form-floating my-1">
-				  <input type="text" class="form-control" id="mod_azon" name="mod_azon">
-				  <label for="mod_azon">Azonosító</label>
-				</div>
-		  
-				<div class="form-floating my-1 mr-1" style="width:190px;">
-					<input type="number" class="form-control" id="mod_ar" name="mod_ar">
-					<label for="mod_ar">Ár</label>
-				</div>
-				<div class="form-floating my-1 mr-1" style="width:190px;">
-					<input type="number" class="form-control" id="mod_db" name="mod_db">
-					<label for="mod_db">Mennyiség</label>
-				</div>
-				<div class="form-floating my-1 mr-1" style="width:190px;">
-					<input type="text" class="form-control" id="mod_meegys" name="mod_meegys">
-					<label for="mod_meegys">Egység</label>
-				</div>
-	  
-				<div class="form-floating my-1 mr-1" style="width:200px;">
-				  <input type="date" class="form-control" id="mod_datum" name="mod_datum">
-				  <label for="mod_datum">Dátum</label>
-				</div>
-	  
-				<div class="form-floating my-1">
-				  <textarea class="form-control "rows="4" id="mod_leiras" name="mod_leiras"></textarea>
-				  <label for="mod_leiras">Leírás</label>
-				</div>
-	  
-			  </form>
+
+			<div class="form-floating my-1 mr-1 col">
+				<input type="number" class="form-control" id="ch" name="ch">
+				<label for="ch">Szénhidrát</label>
 			</div>
-	  
-			<div class="modal-footer bg-light">
-			  <button id="save_button" type="button" class="btn btn-success" data-bs-dismiss="modal"> <i class="bi bi-save2"></i> Ment</button>
+
+			<div class="form-floating my-1 mr-1 col">
+				<input type="number" class="form-control" id="energia" name="energia">
+				<label for="energia">Energia</label>
 			</div>
-	  
-		  </div>
-		</div>
-	  </div>
+
+			<div class="form-floating my-1 mr-1 col">
+				<input type="text" class="form-control" id="meegys" name="meegys">	
+				<label for="meegys">Mértékegység</label>
+			</div>
+	
+		</form>
+	
+		<button id="save_button" type="button" class="btn btn-success" data-bs-dismiss="modal"> <i class="bi bi-save2"></i> Ment</button>
+	</div>
+	
 </body>
 </html>
